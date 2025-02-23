@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sircurl - Connect for Business & Relationships</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f4; color: #333; line-height: 1.6; }
+
+        /* Landing Page Styles */
+        header { background: #2c3e50; color: white; text-align: center; padding: 2rem; }
+        header h1 { font-size: 2.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .intro { text-align: center; padding: 3rem 0; }
+        .intro h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .options { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 2rem 0; }
+        .card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 2rem; text-align: center; }
+        .card h3 { margin-bottom: 1rem; color: #2980b9; }
+        .card button { background: #2980b9; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        .card button:hover { background: #3498db; }
+        footer { text-align: center; padding: 1rem; background: #2c3e50; color: white; position: fixed; bottom: 0; width: 100%; }
+
+        /* Registration Form Styles */
+        .form-container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 400px; margin: 0 auto; display: none; }
+        .form-container h2 { text-align: center; margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; }
+        input, select { width: 100%; padding: 8px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #3498db; }
+
+        /* Dashboard Styles */
+        .dashboard { display: none; padding-bottom: 60px; }
+        .navbar { background: #2c3e50; color: white; display: flex; justify-content: space-around; padding: 1rem; position: fixed; bottom: 0; width: 100%; }
+        .navbar a { color: white; text-decoration: none; font-size: 1.2rem; }
+        .content { padding: 2rem; }
+
+        /* User Details Display */
+        #user-details { margin-top: 1rem; }
+
+        /* Toggle visibility */
+        .active { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- Landing Page -->
+    <div id="landing" class="active">
+        <header>
+            <h1>Sircurl</h1>
+            <p>The Ultimate Connection & Relationship Platform</p>
+        </header>
+        <div class="container">
+            <section class="intro">
+                <h2>Find Your Perfect Match</h2>
+                <p>Whether you're seeking a business partner or a meaningful relationship, Sircurl connects you with the right people.</p>
+            </section>
+            <section class="options">
+                <div class="card">
+                    <h3>Business Partner</h3>
+                    <p>Connect with entrepreneurs, investors, and professionals to grow your ideas.</p>
+                    <button onclick="showRegistration()">Get Started</button>
+                </div>
+                <div class="card">
+                    <h3>Relationship Partner</h3>
+                    <p>Meet like-minded individuals for friendship, romance, or more.</p>
+                    <button onclick="showRegistration()">Get Started</button>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <p>© 2025 Sircurl. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Registration Form -->
+    <div id="registration" class="form-container">
+        <h2>Create Your Sircurl Account</h2>
+        <form id="registration-form" onsubmit="handleSubmit(event)">
+            <label>First Name</label>
+            <input type="text" id="firstName" required>
+            <label>Middle Name</label>
+            <input type="text" id="middleName">
+            <label>Last Name</label>
+            <input type="text" id="lastName" required>
+            <label>Date of Birth</label>
+            <input type="date" id="dob" required>
+            <label>Gender</label>
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="gay">Gay</option>
+                <option value="lesbian">Lesbian</option>
+                <option value="transgender">Transgender</option>
+                <option value="queer">Queer</option>
+                <option value="custom">Custom</option>
+            </select>
+            <label>Email</label>
+            <input type="email" id="email" required>
+            <label>Password</label>
+            <input type="password" id="password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem;">Or sign in with <a href="#">Google</a></p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="content">
+            <h1>Welcome to Sircurl</h1>
+            <p>Your details have been submitted. Check the console for now (press F12)!</p>
+            <div id="user-details"></div>
+        </div>
+        <div class="navbar">
+            <a href="#" onclick="alert('Connection Tab Coming Soon!')">Connection</a>
+            <a href="#" onclick="alert('Chat Tab Coming Soon!')">Chat</a>
+            <a href="#" onclick="alert('Me Tab Coming Soon!')">Me</a>
+            <a href="#" onclick="alert('Notifications Coming Soon!')">N</a>
+            <a href="#" onclick="alert('Settings Coming Soon!')">Settings</a>
+        </div>
+    </div>
+
+    <script>
+        // Show registration form
+        function showRegistration() {
+            document.getElementById('landing').classList.remove('active');
+            document.getElementById('registration').classList.add('active');
+            document.getElementById('dashboard').classList.remove('active');
+        }
+
+        // Show dashboard
+        function showDashboard() {
+            document.getElementById('landing').classList.remove('active');
+            document.getElementById('registration').classList.remove('active');
+            document.getElementById('dashboard').classList.add('active');
+        }
+
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent page refresh
+
+            // Collect user data
+            const userData = {
+                firstName: document.getElementById('firstName').value,
+                middleName: document.getElementById('middleName').value,
+                lastName: document.getElementById('lastName').value,
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            // Log to console for testing
+            console.log('User Details:', userData);
+
+            // Display on dashboard (for demo purposes)
+            const detailsDiv = document.getElementById('user-details');
+            detailsDiv.innerHTML = `
+                <h3>Your Submitted Details:</h3>
+                <p><strong>First Name:</strong> ${userData.firstName}</p>
+                <p><strong>Middle Name:</strong> ${userData.middleName || 'N/A'}</p>
+                <p><strong>Last Name:</strong> ${userData.lastName}</p>
+                <p><strong>Date of Birth:</strong> ${userData.dob}</p>
+                <p><strong>Gender:</strong> ${userData.gender}</p>
+                <p><strong>Email:</strong> ${userData.email}</p>
+                <p><strong>Password:</strong> [Hidden for security]</p>
+            `;
+
+            // Simulate sending to a server (uncomment and adjust URL if you have a back-end)
+            /*
+            fetch('https://your-backend-url/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => console.log('Server Response:', data))
+            .catch(error => console.error('Error:', error));
+            */
+
+            // Move to dashboard
+            showDashboard();
+        }
+    </script>
+</body>
+</html>
